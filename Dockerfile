@@ -62,7 +62,7 @@ FROM scratch
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.vcs-url="https://github.com/productionwentdown/caddy"
-LABEL org.label-schema.version=$VERSION
+LABEL org.label-schema.version=${version}
 LABEL org.label-schema.schema-version="1.0"
 
 COPY --from=compress /usr/bin/caddy /bin/caddy
