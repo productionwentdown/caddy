@@ -11,3 +11,5 @@ ACME server. This means that automatic TLS will not work in this Docker
 image. 
 
 TODO: add [ca-certificates.crt](https://curl.haxx.se/ca/cacert.pem) in /etc/ssl/certs/
+
+TODO: tag specific versions of Caddy
