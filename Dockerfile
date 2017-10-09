@@ -24,14 +24,14 @@ RUN /usr/bin/caddy -version
 
 FROM scratch
 
-COPY --from=fetch /usr/bin/caddy /caddy
+COPY --from=fetch /usr/bin/caddy /bin/caddy
+COPY Caddyfile /etc/Caddyfile
 
-EXPOSE 80 443
-VOLUME /.caddy
+ENV CADDYPATH=/etc/.caddy
+VOLUME /etc/.caddy
+
 WORKDIR /srv
-
-COPY Caddyfile /Caddyfile
 COPY index.html /srv/index.html
 
-ENTRYPOINT ["/caddy"]
-CMD ["--conf", "/Caddyfile", "--log", "stdout"]
+ENTRYPOINT ["/bin/caddy"]
+CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
