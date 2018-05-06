@@ -1,9 +1,9 @@
 #
 # Build stage by @abiosoft https://github.com/abiosoft/caddy-docker
 #
-FROM golang:1.9-alpine as build
+FROM golang:1.10-alpine as build
 
-ARG version="0.10.11"
+ARG version="0.10.14"
 ARG plugins=""
 
 RUN apk add --no-cache git
