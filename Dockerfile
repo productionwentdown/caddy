@@ -3,7 +3,7 @@
 #
 FROM golang:1.10-alpine as build
 
-ARG version="0.10.14"
+ARG version="0.11.0"
 ARG plugins=""
 
 RUN apk add --no-cache git
