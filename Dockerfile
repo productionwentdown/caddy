@@ -84,5 +84,4 @@ VOLUME /etc/.caddy
 WORKDIR /srv
 COPY index.html /srv/index.html
 
-ENTRYPOINT ["/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
+ENTRYPOINT ["/bin/caddy", "--conf", "/etc/Caddyfile", "--log", "stdout"]
