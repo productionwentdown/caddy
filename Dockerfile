@@ -3,12 +3,14 @@
 #
 FROM golang:1.10-alpine as build
 
+# args
 ARG version="0.11.0"
 ARG plugins=""
 
+# deps
 RUN apk add --no-cache git
 
-# caddy
+# source
 RUN git clone https://github.com/mholt/caddy -b "v${version}" $GOPATH/src/github.com/mholt/caddy
 WORKDIR $GOPATH/src/github.com/mholt/caddy
 RUN git checkout -b "v${version}"
@@ -38,7 +40,9 @@ RUN mv caddy /
 #
 FROM debian:stable as compress
 
-# curl, tar
+ARG upx_version="3.94"
+
+# dependencies
 RUN apt-get update && apt install -y --no-install-recommends \
     tar \
     xz-utils \
@@ -47,9 +51,9 @@ RUN apt-get update && apt install -y --no-install-recommends \
 
 # get official upx binary
 RUN curl --silent --show-error --fail --location -o - \
-    "https://github.com/upx/upx/releases/download/v3.94/upx-3.94-amd64_linux.tar.xz" \
+    "https://github.com/upx/upx/releases/download/v${upx_version}/upx-${upx_version}-amd64_linux.tar.xz" \
     | tar --no-same-owner -C /usr/bin/ -xJ \
-    --strip-components 1 upx-3.94-amd64_linux/upx
+    --strip-components 1 upx-${upx_version}-amd64_linux/upx
 
 # copy and compress
 COPY --from=build /caddy /usr/bin/caddy
@@ -69,7 +73,7 @@ LABEL org.label-schema.vcs-url="https://github.com/productionwentdown/caddy"
 LABEL org.label-schema.version=${version}
 LABEL org.label-schema.schema-version="1.0"
 
-# copy caddy binary and ca certs
+# copy binary and ca certs
 COPY --from=compress /usr/bin/caddy /bin/caddy
 COPY --from=compress /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
