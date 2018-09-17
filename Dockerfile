@@ -9,9 +9,9 @@ ARG plugins=""
 RUN apk add --no-cache git
 
 # caddy
-RUN git clone https://github.com/mholt/caddy -b "v${version}" /go/src/github.com/mholt/caddy \
-    && cd /go/src/github.com/mholt/caddy \
-    && git checkout -b "v${version}"
+RUN git clone https://github.com/mholt/caddy -b "v${version}" $GOPATH/src/github.com/mholt/caddy
+WORKDIR $GOPATH/src/github.com/mholt/caddy
+RUN git checkout -b "v${version}"
 
 # plugin helper
 RUN go get -v github.com/abiosoft/caddyplug/caddyplug
@@ -20,17 +20,17 @@ RUN go get -v github.com/abiosoft/caddyplug/caddyplug
 RUN for plugin in $(echo $plugins | tr "," " "); do \
     go get -v $(caddyplug package $plugin); \
     printf "package caddyhttp\nimport _ \"$(caddyplug package $plugin)\"" > \
-        /go/src/github.com/mholt/caddy/caddyhttp/$plugin.go ; \
+        $GOPATH/src/github.com/mholt/caddy/caddyhttp/$plugin.go ; \
     done
 
 # builder dependency
-RUN git clone https://github.com/caddyserver/builds /go/src/github.com/caddyserver/builds
+RUN git clone https://github.com/caddyserver/builds $GOPATH/src/github.com/caddyserver/builds
 
 # build
-RUN cd /go/src/github.com/mholt/caddy/caddy \
-    && git checkout -f \
-    && go run build.go \
-    && mv caddy /go/bin
+WORKDIR $GOPATH/src/github.com/mholt/caddy/caddy
+RUN git checkout -f
+RUN go run build.go
+RUN mv caddy /
 
 
 #
@@ -52,7 +52,7 @@ RUN curl --silent --show-error --fail --location -o - \
     --strip-components 1 upx-3.94-amd64_linux/upx
 
 # copy and compress
-COPY --from=build /go/bin/caddy /usr/bin/caddy
+COPY --from=build /caddy /usr/bin/caddy
 RUN /usr/bin/upx --ultra-brute /usr/bin/caddy
 
 # test
