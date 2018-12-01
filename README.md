@@ -3,6 +3,8 @@
 
 A tiny 4MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 
+> Notice: I keep this manually updated. If it goes out of date, ping me via Twitter [@serverwentdown](https://twitter.com/serverwentdown).
+
 # Usage
 
 Serve files in `$PWD`:
