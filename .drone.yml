@@ -1,8 +1,15 @@
-pipeline:
-  docker:
-    image: plugins/docker
+kind: pipeline
+name: default
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
     registry: registry.makerforce.io
-    secrets: [ docker_username, docker_password ]
     repo: registry.makerforce.io/pwd/caddy
     tags:
-      - latest
+    - latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
