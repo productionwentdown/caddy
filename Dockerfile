@@ -86,6 +86,5 @@ VOLUME /etc/.caddy
 
 # serve from /srv
 WORKDIR /srv
-COPY index.html /srv/index.html
 
 ENTRYPOINT ["/bin/caddy", "--conf", "/etc/Caddyfile", "--log", "stdout"]
