@@ -4,7 +4,7 @@
 FROM golang:1.10-alpine as build
 
 # args
-ARG version="0.11.4"
+ARG version="0.11.5"
 ARG plugins=""
 
 # deps
