@@ -1,10 +1,11 @@
 #
 # Build stage by @abiosoft https://github.com/abiosoft/caddy-docker
 #
-FROM golang:1.10-alpine as build
+FROM golang:1.12-alpine as build
 
 # args
 ARG version="0.11.5"
+# add plugins here separated by commas
 ARG plugins=""
 
 # deps
