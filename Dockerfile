@@ -1,38 +1,29 @@
 #
-# Build stage by @abiosoft https://github.com/abiosoft/caddy-docker
+# Build stage
 #
 FROM golang:1.12-alpine as build
 
 # args
-ARG version="0.11.5"
-# add plugins here separated by commas
+ARG version="1.0.0"
+# add plugin import paths here separated by commas
 ARG plugins=""
+ARG telemetry="true"
 
 # deps
 RUN apk add --no-cache git
 
-# source
-RUN git clone https://github.com/mholt/caddy -b "v${version}" $GOPATH/src/github.com/mholt/caddy
-WORKDIR $GOPATH/src/github.com/mholt/caddy
-RUN git checkout -b "v${version}"
-
-# plugin helper
-RUN go get -v github.com/abiosoft/caddyplug/caddyplug
+# build root
+RUN mkdir /build
+WORKDIR /build
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 # plugins
-RUN for plugin in $(echo $plugins | tr "," " "); do \
-    go get -v $(caddyplug package $plugin); \
-    printf "package caddyhttp\nimport _ \"$(caddyplug package $plugin)\"" > \
-        $GOPATH/src/github.com/mholt/caddy/caddyhttp/$plugin.go ; \
-    done
-
-# builder dependency
-RUN git clone https://github.com/caddyserver/builds $GOPATH/src/github.com/caddyserver/builds
+COPY go.mod plugger.go ./
+RUN go run plugger.go -plugins="${plugins}" -telemetry="${telemetry}"
 
 # build
-WORKDIR $GOPATH/src/github.com/mholt/caddy/caddy
-RUN git checkout -f
-RUN go run build.go
+RUN go build
 RUN mv caddy /
 
 
