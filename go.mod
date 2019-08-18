@@ -1,3 +1,3 @@
 module caddy
 
-require github.com/mholt/caddy v1.0.0
+require github.com/caddyserver/caddy v1.0.2
