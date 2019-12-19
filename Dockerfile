@@ -1,7 +1,7 @@
 #
 # Build stage
 #
-FROM golang:1.12-alpine as build
+FROM golang:1.13-alpine as build
 
 # args
 ARG version="1.0.4"
