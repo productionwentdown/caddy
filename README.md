@@ -34,5 +34,5 @@ You can also fork and edit plugger.go for more advanced plugin configuration
 # Build without telemetry
 
 ```
-docker build -t caddy --build-arg telemetry=false
+docker build . -t caddy --build-arg telemetry=false
 ```
