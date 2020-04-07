@@ -1,9 +1,9 @@
 
+# WARNING: Upcoming Caddy v2 WILL fundamentally change the way Caddy is configured. The `latest` tag will be changed to reflect that. This LIKELY breaks existing containers using the `latest` tag and the stock Caddyfile
+
 # [caddy](https://hub.docker.com/r/productionwentdown/caddy/) [![](https://images.microbadger.com/badges/version/productionwentdown/caddy.svg)](https://microbadger.com/images/productionwentdown/caddy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/productionwentdown/caddy.svg)](https://microbadger.com/images/productionwentdown/caddy "Get your own image badge on microbadger.com")
 
 A tiny 9MB Caddy image compressed with [UPX](https://github.com/upx/upx).
-
-> Notice: I keep this manually updated. If it goes out of date, ping me via Twitter [@serverwentdown](https://twitter.com/serverwentdown).
 
 # Usage
 
