@@ -1,0 +1,9 @@
+# see https://github.com/caddyserver/caddy-docker
+
+Maintainers: Ambrose Chua <ambrose@makerforce.io> (@serverwentdown)
+GitRepo: https://github.com/productionwentdown/caddy.git
+GitCommit: c97b19e1ddf4f8107ce5004038feb627679ad3f5
+
+Tags: 2.0.0-rc.1, test
+Architectures: amd64
+Directory: scratch
