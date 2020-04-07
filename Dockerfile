@@ -4,7 +4,7 @@
 FROM golang:1.13-alpine as build
 
 # args
-ARG version="1.0.4"
+ARG version="1.0.5"
 # add plugin import paths here separated by commas
 ARG plugins=""
 ARG telemetry="true"
