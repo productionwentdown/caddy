@@ -18,7 +18,7 @@ caddyStackbrew="$(_wget "$gitHubUpstreamUrl/raw/master/stackbrew-config.yaml")"
 caddyVersion="$(echo "$caddyStackbrew" | grep -oP '(?<=caddy_version: '"'"').+(?='"'"')')"
 
 cat > scratch/Dockerfile <<-EODF
-FROM caddy/caddy:$caddyVersion-alpine as build
+FROM caddy:$caddyVersion-alpine as build
 
 RUN apk add --no-cache upx ca-certificates \
     && upx --ultra-brute /usr/bin/caddy \
