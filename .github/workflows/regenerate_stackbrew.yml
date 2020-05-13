@@ -27,7 +27,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add */Dockerfile
+        git add library/caddy
         if output=$(git status --porcelain) && [ ! -z "$output" ]; then
           git commit -m 'Regenerate stackbrew library'
           git push
