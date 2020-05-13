@@ -39,7 +39,7 @@ VOLUME /config
 VOLUME /data
 
 LABEL org.opencontainers.image.version=v$caddyVersion
-LABEL org.opencontainers.image.title="Caddy (productionwentdown)"
+LABEL org.opencontainers.image.title="Caddy (productionwentdown fork)"
 LABEL org.opencontainers.image.description="a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go"
 LABEL org.opencontainers.image.url=https://productionwentdown.github.io
 LABEL org.opencontainers.image.documentation=https://caddyserver.com/docs
