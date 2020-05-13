@@ -5,7 +5,10 @@ name: default
 steps:
 - name: dockerhub
   image: hairyhenderson/dockerfiles-builder:latest
-  privileged: true
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
   commands:
   - bashbrew build caddy
   - echo $PASSWORD | docker login --username $USERNAME --password-stdin
@@ -17,3 +20,8 @@ steps:
       from_secret: dockerhub_username
     PASSWORD:
       from_secret: dockerhub_token
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock
