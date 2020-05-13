@@ -13,9 +13,8 @@ jobs:
     steps:
 
     - uses: actions/checkout@v2
-
-    - name: Reattach HEAD
-      run: git checkout ${GITHUB_REF#refs/heads/}
+      with:
+        token: ${{ secrets.PUSH_GITHUB_TOKEN }}
 
     - name: Regenerate stackbrew library
       run: make library/caddy
