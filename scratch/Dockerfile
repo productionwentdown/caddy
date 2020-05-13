@@ -16,7 +16,7 @@ ENV HOME=/
 VOLUME /config
 VOLUME /data
 
-LABEL org.opencontainers.image.version=2.0.0
+LABEL org.opencontainers.image.version=v2.0.0
 LABEL org.opencontainers.image.title="Caddy (productionwentdown)"
 LABEL org.opencontainers.image.description="a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go"
 LABEL org.opencontainers.image.url=https://productionwentdown.github.io
