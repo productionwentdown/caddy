@@ -30,7 +30,7 @@ caddyMajor="$(echo "$caddyStackbrew" | grep -oP '(?<=caddy_major: '"'"').+(?='"'
 version="${caddyVersion#v}"
 versionAliases=($version)
 
-arches=(amd64, arm64v8, arm32v6, arm32v7)
+arches=(amd64 arm64v8 arm32v6 arm32v7)
 
 if [[ "$version" =~ "-rc" ]]; then
 	versionAliases+=(test)
