@@ -2,14 +2,16 @@ kind: pipeline
 name: default
 
 steps:
-- name: docker
-  image: plugins/docker
-  settings:
-    registry: registry.makerforce.io
-    repo: registry.makerforce.io/pwd/caddy
-    tags:
-    - latest
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
+- name: dockerhub
+  image: hairyhenderson/dockerfiles-builder:latest
+  commands:
+  - bashbrew build caddy
+  - echo $PASSWORD | docker login --username $USERNAME --password-stdin
+  - bashbrew push productionwentdown/caddy
+  environment:
+    BASHBREW_LIBRARY: ./library
+    BASHBREW_NAMESPACE: caddy
+    USERNAME:
+      from_secret: dockerhub_username
+    PASSWORD:
+      from_secret: dockerhub_token
