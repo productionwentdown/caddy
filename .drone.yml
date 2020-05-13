@@ -1,0 +1,16 @@
+kind: pipeline
+name: default
+type: kubernetes
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    repo: registry.makerforce.io/pwd/caddy
+    context: scratch
+    tags:
+    - latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
