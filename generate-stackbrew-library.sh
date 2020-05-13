@@ -24,7 +24,9 @@ GitCommit: $(git log --format='format:%H' -1)
 
 EOH
 
-caddyVersion="$(_wget "$gitHubUpstreamUrl/raw/master/stackbrew-config.yaml" | grep -oP '(?<=caddy_version: ).+$')"
+caddyStackbrew="$(_wget "$gitHubUpstreamUrl/raw/master/stackbrew-config.yaml")"
+caddyVersion="$(echo "$caddyStackbrew" | grep -oP '(?<=caddy_version: '"'"').+(?='"'"')')"
+caddyMajor="$(echo "$caddyStackbrew" | grep -oP '(?<=caddy_major: '"'"').+(?='"'"')')"
 version="${caddyVersion#v}"
 versionAliases=($version)
 
@@ -35,11 +37,19 @@ if [[ "$version" =~ "-rc" ]]; then
 elif [[ "$version" =~ "-beta" ]]; then
 	versionAliases+=()
 else
-	versionAliases+=(latest)
+	versionAliases+=("$caddyMajor" latest)
 fi
 
 cat <<-EOE
 	Tags: $(join ', ' "${versionAliases[@]}")
 	Architectures: $(join ', ' "${arches[@]}")
 	Directory: scratch
+
+EOE
+
+cat <<-EOE
+	Tags: 1.0.5, 1
+	Architectures: $(join ', ' "${arches[@]}")
+	Directory: legacy
+
 EOE

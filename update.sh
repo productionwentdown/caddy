@@ -14,11 +14,11 @@ _wget() {
 	wget -qO- -o /dev/null "$@"
 }
 
-caddyVersion="$(_wget "$gitHubUpstreamUrl/raw/master/stackbrew-config.yaml" | grep -oP '(?<=caddy_version: ).+$')"
-version="${caddyVersion#v}"
+caddyStackbrew="$(_wget "$gitHubUpstreamUrl/raw/master/stackbrew-config.yaml")"
+caddyVersion="$(echo "$caddyStackbrew" | grep -oP '(?<=caddy_version: '"'"').+(?='"'"')')"
 
 cat > scratch/Dockerfile <<-EODF
-FROM caddy/caddy:$version as build
+FROM caddy/caddy:$caddyVersion-alpine as build
 
 RUN apk add --no-cache upx ca-certificates \
     && upx --ultra-brute /usr/bin/caddy \
@@ -51,5 +51,5 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 2019
 
-ENTRYPOINT ["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
 EODF
