@@ -43,13 +43,13 @@ fi
 cat <<-EOE
 	Tags: $(join ', ' "${versionAliases[@]}")
 	Architectures: $(join ', ' "${arches[@]}")
-	Directory: scratch
+	Directory: scratch/
 
 EOE
 
 cat <<-EOE
 	Tags: 1.0.5, 1
 	Architectures: $(join ', ' "${arches[@]}")
-	Directory: legacy
+	Directory: legacy/
 
 EOE
