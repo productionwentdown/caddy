@@ -2,7 +2,7 @@
 
 Maintainers: Ambrose Chua <ambrose@makerforce.io> (@serverwentdown)
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: 326aceeeb78d799afc27849c98368d535708966a
+GitCommit: 0397eabadc77be2267c1bb44a1495e04bd0b24f7
 
 Tags: 2.0.0, 2, latest
 Architectures: amd64, arm64v8, arm32v6, arm32v7
