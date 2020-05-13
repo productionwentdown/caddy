@@ -9,7 +9,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - bashbrew build caddy
+  - bashbrew build --pull always caddy
   - echo $PASSWORD | docker login --username $USERNAME --password-stdin
   - bashbrew push productionwentdown/caddy
   environment:
