@@ -51,5 +51,5 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 2019
 
-CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+CMD ["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
 EODF

@@ -30,7 +30,7 @@ FROM scratch
 
 # labels
 LABEL org.label-schema.vcs-url="https://github.com/productionwentdown/caddy"
-LABEL org.label-schema.version=${version}
+LABEL org.label-schema.version=v${version}
 LABEL org.label-schema.schema-version="1.0"
 
 # copy binary and ca certs
