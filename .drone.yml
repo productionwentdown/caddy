@@ -5,6 +5,7 @@ name: default
 steps:
 - name: dockerhub
   image: hairyhenderson/dockerfiles-builder:latest
+  privileged: true
   commands:
   - bashbrew build caddy
   - echo $PASSWORD | docker login --username $USERNAME --password-stdin
