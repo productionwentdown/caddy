@@ -6,10 +6,11 @@ steps:
 - name: docker
   image: plugins/docker
   settings:
+    registry: registry.makerforce.io
     repo: registry.makerforce.io/pwd/caddy
-    context: scratch
     tags:
     - latest
+    context: scratch
     username:
       from_secret: docker_username
     password:
