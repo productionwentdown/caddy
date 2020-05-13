@@ -1,0 +1,29 @@
+name: Build and push Docker images
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+    - library/caddy
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    container:
+      image: hairyhenderson/dockerfiles-builder:latest
+    env:
+      BASHBREW_LIBRARY: ./library
+      BASHBREW_NAMESPACE: productionwentdown
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: build
+      run: bashbrew build --pull always caddy
+
+    - name: push
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        bashbrew push caddy
+      if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
