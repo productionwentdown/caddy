@@ -11,6 +11,7 @@ steps:
     tags:
     - latest
     context: scratch
+    dockerfile: scratch/Dockerfile
     username:
       from_secret: docker_username
     password:
