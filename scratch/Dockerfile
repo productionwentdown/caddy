@@ -19,7 +19,7 @@ VOLUME /data
 LABEL org.opencontainers.image.version=v2.0.0
 LABEL org.opencontainers.image.title="Caddy (productionwentdown fork)"
 LABEL org.opencontainers.image.description="a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go"
-LABEL org.opencontainers.image.url=https://productionwentdown.github.io
+LABEL org.opencontainers.image.url=https://productionwentdown.makerforce.io
 LABEL org.opencontainers.image.documentation=https://caddyserver.com/docs
 LABEL org.opencontainers.image.vendor="productionwentdown"
 LABEL org.opencontainers.image.licenses=Apache-2.0
