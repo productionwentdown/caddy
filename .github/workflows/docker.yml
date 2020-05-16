@@ -27,3 +27,6 @@ jobs:
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
       if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
+
+    - name: microbadger
+      run: curl -X POST https://hooks.microbadger.com/images/productionwentdown/caddy/OVgee2in7ldJ7GgTZiScpwH_mTs=
