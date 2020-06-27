@@ -1,4 +1,4 @@
-FROM caddy:2.1.0-beta.1
+FROM caddy:2.1.0
 2.0.0-alpine as build
 
 RUN apk add --no-cache upx ca-certificates     && upx --ultra-brute /usr/bin/caddy     && caddy version
@@ -17,7 +17,7 @@ ENV HOME=/
 VOLUME /config
 VOLUME /data
 
-LABEL org.opencontainers.image.version=v2.1.0-beta.1
+LABEL org.opencontainers.image.version=v2.1.0
 2.0.0
 LABEL org.opencontainers.image.title="Caddy (productionwentdown fork)"
 LABEL org.opencontainers.image.description="a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go"
