@@ -34,7 +34,7 @@ jobs:
         go run update.go -dockerfiles
         
     - name: Commit and push changes
-      id: commit_dockerfiles
+      id: commit-dockerfiles
       run: |
         git add */*/Dockerfile
         if output=$(git status --porcelain) && [ ! -z "$output" ]; then
@@ -44,21 +44,21 @@ jobs:
         fi
 
     - name: Regenerate Bashbrew manifests 
-      if: steps.commit_dockerfiles.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         go run update.go -manifest -commit $(git log -1 --format='format:%H' HEAD)
 
     - name: Build on Linux
-      if: steps.commit_dockerfiles.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         bashbrew build --pull always caddy
 
     - name: push
-      if: steps.commit_dockerfiles.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
 
     - name: microbadger
-      if: steps.commit_dockerfiles.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: curl -X POST https://hooks.microbadger.com/images/productionwentdown/caddy/OVgee2in7ldJ7GgTZiScpwH_mTs=

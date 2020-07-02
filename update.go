@@ -165,5 +165,9 @@ func updateManifest(man *manifest.Manifest2822, gitCommit string) error {
 		entry.GitCommit = gitCommit
 	}
 	manifestPath := path.Join("library", "caddy")
+	err := os.MkdirAll("library", 0755)
+	if err != nil {
+		return err
+	}
 	return ioutil.WriteFile(manifestPath, []byte(man.String()), 0644)
 }
