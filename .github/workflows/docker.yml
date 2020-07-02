@@ -48,6 +48,15 @@ jobs:
       run: |
         go run update.go -manifest -commit $(git log -1 --format='format:%H' HEAD)
 
+    - name: Commit and push changes
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      run: |
+        git add library/caddy
+        if output=$(git status --porcelain) && [ ! -z "$output" ]; then
+          git commit -m "Bump Caddy version" -a
+          git push
+        fi
+
     - name: Build on Linux
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
