@@ -65,6 +65,8 @@ jobs:
     - name: Push images
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
+        wget https://github.com/estesp/manifest-tool/releases/download/v1.0.2/manifest-tool-linux-amd64 -O /usr/local/bin/manifest-tool
+        chmod +x /usr/local/bin/manifest-tool
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
         bashbrew put-shared caddy
