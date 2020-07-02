@@ -57,17 +57,17 @@ jobs:
           git push
         fi
 
-    - name: Build on Linux
+    - name: Build images on Linux
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         bashbrew build --pull always caddy
 
-    - name: push
+    - name: Push images
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
 
-    - name: microbadger
+    - name: Ping microbadger
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: curl -X POST https://hooks.microbadger.com/images/productionwentdown/caddy/OVgee2in7ldJ7GgTZiScpwH_mTs=
