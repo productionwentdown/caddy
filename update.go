@@ -93,21 +93,21 @@ func subsetManifest(man *manifest.Manifest2822) *manifest.Manifest2822 {
 	entries := make([]manifest.Manifest2822Entry, 0, 1)
 	for _, entry := range man.Entries {
 
-		hasWindows := false
+		isWindows := false
 		for _, arch := range entry.Architectures {
-			if strings.HasPrefix(arch, "windows") {
-				hasWindows = true
+			if strings.Contains(arch, "windows") {
+				isWindows = true
 			}
 		}
 
 		isBuilder := false
 		for _, tag := range entry.Tags {
-			if strings.HasSuffix(tag, "builder") {
+			if strings.Contains(tag, "builder") {
 				isBuilder = true
 			}
 		}
 
-		if hasWindows || isBuilder {
+		if isWindows || isBuilder {
 			continue
 		}
 		entries = append(entries, entry)
