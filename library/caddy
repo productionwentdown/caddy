@@ -4,12 +4,12 @@ Tags: 2.1.1-alpine
 SharedTags: 2.1.1
 Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: a3762b1ce525e2e078782248a99ddc10795a02f9
+GitCommit: 87e7c0a928fb250df16bea7fa9bea07ff4faf694
 Directory: 2.1/alpine
 
-Tags: 2.2.0-alpine, 2-alpine, alpine
-SharedTags: 2.2.0, 2, latest
+Tags: 2.2.1-alpine, 2-alpine, alpine
+SharedTags: 2.2.1, 2, latest
 Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: a3762b1ce525e2e078782248a99ddc10795a02f9
+GitCommit: 87e7c0a928fb250df16bea7fa9bea07ff4faf694
 Directory: 2.2/alpine
