@@ -1,22 +1,15 @@
 Maintainers: Ambrose Chua <ambrose@makerforce.io> (@serverwentdown)
 
-Tags: 2.1.1-alpine
-SharedTags: 2.1.1
+Tags: 2.2.1-alpine
+SharedTags: 2.2.1
 Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: 41657468461bda37d58267310a5d1676fcafdac5
-Directory: 2.1/alpine
-
-Tags: 2.2.1-alpine, 2-alpine, alpine
-SharedTags: 2.2.1, 2, latest
-Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
-GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: 41657468461bda37d58267310a5d1676fcafdac5
+GitCommit: cf5d03865da32443d04e211a87f0448c58248301
 Directory: 2.2/alpine
 
-Tags: 2.3.0-rc.1-alpine
-SharedTags: 2.3.0-rc.1
+Tags: 2.3.0-alpine, 2-alpine, alpine
+SharedTags: 2.3.0, 2, latest
 Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: 41657468461bda37d58267310a5d1676fcafdac5
+GitCommit: cf5d03865da32443d04e211a87f0448c58248301
 Directory: 2.3/alpine
