@@ -7,7 +7,7 @@ A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 
 New versions are tracked within 4 hours. As of the time of writing, these are the tags available:
 
-* `2.1.1`, `2.1`, `2`, `latest`
+* `2.3.0-alpine`, `2-alpine`, `alpine`
 
 For the most up-to-date information, visit the Docker Hub tags page. 
 
