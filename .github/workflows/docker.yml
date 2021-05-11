@@ -50,6 +50,7 @@ jobs:
 
     - name: Commit and push changes
       #if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      id: commit-bashbrew
       run: |
         git add library/caddy
         if output=$(git status --porcelain) && [ ! -z "$output" ]; then
@@ -59,12 +60,12 @@ jobs:
         fi
 
     - name: Build images on Linux
-      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes' || steps.commit-bashbrew.outputs.bumped == 'yes'
       run: |
         bashbrew build --pull always caddy
 
     - name: Push images
-      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes' || steps.commit-bashbrew.outputs.bumped == 'yes'
       run: |
         wget https://github.com/estesp/manifest-tool/releases/download/v1.0.2/manifest-tool-linux-amd64 -O /usr/local/bin/manifest-tool
         chmod +x /usr/local/bin/manifest-tool
