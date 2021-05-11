@@ -1,4 +1,4 @@
-FROM caddy:2.4.0-rc.1-alpine as build
+FROM caddy:2.4.0-alpine as build
 
 RUN apk add --no-cache upx ca-certificates \
     && upx --ultra-brute /usr/bin/caddy \
