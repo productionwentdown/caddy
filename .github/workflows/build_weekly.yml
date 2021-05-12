@@ -1,11 +1,8 @@
-name: Build and push somewhat weekly
+name: Build and push Docker images weekly
 
 on:
   schedule:
   - cron: "12 16 * * 2"
-  push:
-    branches:
-    - master
 
 jobs:
   docker:
