@@ -1,0 +1,39 @@
+name: Build and push somewhat weekly
+
+on:
+  schedule:
+  - cron: "12 16 * * 2"
+  push:
+    branches:
+    - master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    container:
+      image: hairyhenderson/dockerfiles-builder:latest
+    env:
+      BASHBREW_LIBRARY: ./library
+      BASHBREW_NAMESPACE: productionwentdown
+    if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Build images on Linux
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes' || steps.commit-bashbrew.outputs.bumped == 'yes'
+      run: |
+        bashbrew build --pull always caddy
+
+    - name: Push images
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes' || steps.commit-bashbrew.outputs.bumped == 'yes'
+      run: |
+        wget https://github.com/estesp/manifest-tool/releases/download/v1.0.2/manifest-tool-linux-amd64 -O /usr/local/bin/manifest-tool
+        chmod +x /usr/local/bin/manifest-tool
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        bashbrew push caddy
+        #bashbrew put-shared caddy
+
+    - name: Ping microbadger
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      run: curl -X POST https://hooks.microbadger.com/images/productionwentdown/caddy/OVgee2in7ldJ7GgTZiScpwH_mTs=
