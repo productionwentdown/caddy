@@ -44,12 +44,12 @@ jobs:
         fi
 
     - name: Regenerate Bashbrew manifests 
-      #if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       run: |
         go run update.go -manifest -commit $(git log -1 --format='format:%H' HEAD)
 
     - name: Commit and push changes
-      #if: steps.commit-dockerfiles.outputs.bumped == 'yes'
+      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
       id: commit-bashbrew
       run: |
         git add library/caddy
@@ -71,7 +71,7 @@ jobs:
         chmod +x /usr/local/bin/manifest-tool
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
-        bashbrew put-shared caddy
+        #bashbrew put-shared caddy
 
     - name: Ping microbadger
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
