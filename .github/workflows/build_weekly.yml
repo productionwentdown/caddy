@@ -32,7 +32,7 @@ jobs:
         chmod +x /usr/local/bin/manifest-tool
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
-        #bashbrew put-shared caddy
+        bashbrew put-shared --single-arch caddy
 
     - name: Ping microbadger
       if: steps.commit-dockerfiles.outputs.bumped == 'yes'
