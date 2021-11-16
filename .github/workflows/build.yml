@@ -16,6 +16,7 @@ jobs:
     env:
       BASHBREW_LIBRARY: ./library
       BASHBREW_NAMESPACE: productionwentdown
+      BASHBREW_ARCH_NAMESPACES: amd64=productionwentdown
     if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
     steps:
 
