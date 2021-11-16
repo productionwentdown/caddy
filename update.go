@@ -24,18 +24,17 @@ A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 - [Docker Hub](https://hub.docker.com/r/productionwentdown/caddy)
 - [GitHub](https://github.com/productionwentdown/caddy)
 
-# Shared Tags
+## Simple Tags
 
 New versions are tracked within 4 hours. Currently available versions:
-{{range $entry := .Entries}}
-* {{range $index, $tag := $entry.Tags}}{{if $index}}, {{end}}` + "`{{$tag}}`" + `{{end}}
+
+{{range $entry := .Entries}}* {{range $index, $tag := $entry.Tags}}{{if $index}}, {{end}}` + "`{{$tag}}`" + `{{end}}
 {{end}}
-Legacy tags available that should not be used:
+## Shared Tags
 
-* ` + "`2.0.0`" + `
-* ` + "`1.0.0`, `1.0.1`, `1.0.2`, `1.0.3`, `1.0.4`, `1.0.5`, `1`" + `
-* ` + "`0.10.*`, `0.11.*`" + `
-
+{{range $entry := .Entries}}* {{range $index, $tag := $entry.SharedTags}}{{if $index}}, {{end}}` + "`{{$tag}}`" + `{{end}}
+  * ` + "`{{index $entry.Tags 0}}`" + `
+{{end}}
 # Usage
 
 See the [official image](https://hub.docker.com/_/caddy) for documentation. This image behaves the same way, except that it is slightly slimmer.

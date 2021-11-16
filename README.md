@@ -6,17 +6,16 @@ A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 - [Docker Hub](https://hub.docker.com/r/productionwentdown/caddy)
 - [GitHub](https://github.com/productionwentdown/caddy)
 
-# Shared Tags
+## Simple Tags
 
 New versions are tracked within 4 hours. Currently available versions:
 
 * `2.4.6-alpine`, `2-alpine`, `alpine`
 
-Legacy tags available that should not be used:
+## Shared Tags
 
-* `2.0.0`
-* `1.0.0`, `1.0.1`, `1.0.2`, `1.0.3`, `1.0.4`, `1.0.5`, `1`
-* `0.10.*`, `0.11.*`
+* `2.4.6`, `2`, `latest`
+  * `2.4.6-alpine`
 
 # Usage
 

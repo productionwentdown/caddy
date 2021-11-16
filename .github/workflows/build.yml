@@ -38,7 +38,7 @@ jobs:
     - name: Commit and push changes
       id: commit-dockerfiles
       run: |
-        git add */*/Dockerfile
+        git add */*/Dockerfile README.md
         if output=$(git status --porcelain) && [ ! -z "$output" ]; then
           git commit -m "Bump Caddy version" -a
           git push
@@ -74,3 +74,10 @@ jobs:
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
         bashbrew put-shared --single-arch caddy
+
+    - name: Update Docker Hub Description
+      uses: peter-evans/dockerhub-description@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        repository: productionwentdown/caddy
