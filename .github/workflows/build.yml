@@ -74,7 +74,3 @@ jobs:
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         bashbrew push caddy
         bashbrew put-shared --single-arch caddy
-
-    - name: Ping microbadger
-      if: steps.commit-dockerfiles.outputs.bumped == 'yes'
-      run: curl -X POST https://hooks.microbadger.com/images/productionwentdown/caddy/OVgee2in7ldJ7GgTZiScpwH_mTs=
