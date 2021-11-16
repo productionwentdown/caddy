@@ -1,4 +1,4 @@
-FROM caddy:2.4.3-alpine as build
+FROM caddy:2.4.6-alpine as build
 
 RUN apk add --no-cache upx ca-certificates \
     && upx --ultra-brute /usr/bin/caddy \
@@ -19,7 +19,7 @@ ENV HOME=/
 VOLUME /config
 VOLUME /data
 
-LABEL org.opencontainers.image.version=v2.4.3
+LABEL org.opencontainers.image.version=v2.4.6
 LABEL org.opencontainers.image.title="Caddy (productionwentdown build)"
 LABEL org.opencontainers.image.description="a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go"
 LABEL org.opencontainers.image.url=https://productionwentdown.makerforce.io
