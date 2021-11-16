@@ -32,8 +32,8 @@ jobs:
 
     - name: Regenerate Dockerfiles
       run: |
-        go run update.go -dockerfiles
-        
+        go run update.go -dockerfiles -readme
+
     - name: Commit and push changes
       id: commit-dockerfiles
       run: |

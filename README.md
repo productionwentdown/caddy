@@ -1,20 +1,19 @@
 
-# [caddy](https://hub.docker.com/r/productionwentdown/caddy/) [![](https://images.microbadger.com/badges/version/productionwentdown/caddy.svg)](https://microbadger.com/images/productionwentdown/caddy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/productionwentdown/caddy.svg)](https://microbadger.com/images/productionwentdown/caddy "Get your own image badge on microbadger.com")
+# [caddy](https://hub.docker.com/r/productionwentdown/caddy/) ![Docker Pulls](https://img.shields.io/docker/pulls/productionwentdown/caddy) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/productionwentdown/caddy/alpine?style=flat-square)
 
 A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 
 # Shared Tags
 
-New versions are tracked within 4 hours. As of the time of writing, these are the tags available:
+New versions are tracked within 4 hours. Currently available versions:
 
-* `2.3.0-alpine`, `2-alpine`, `alpine`
-
-For the most up-to-date information, visit the Docker Hub tags page. 
+* `2.4.6-alpine`, `2-alpine`, `alpine`
 
 Legacy tags available that should not be used:
 
 * `2.0.0`
-* `1.0.5`, `1`
+* `1.0.0`, `1.0.1`, `1.0.2`, `1.0.3`, `1.0.4`, `1.0.5`, `1`
+* `0.10.*`, `0.11.*`
 
 # Usage
 

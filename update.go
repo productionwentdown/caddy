@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
 	"flag"
 	"io/ioutil"
+	"os"
 	"path"
 	"strings"
 	"text/template"
@@ -15,6 +15,28 @@ var manifestURL = "https://github.com/docker-library/official-images/raw/master/
 
 var maintainers = []string{"Ambrose Chua <ambrose@makerforce.io> (@serverwentdown)"}
 var gitRepo = "https://github.com/productionwentdown/caddy.git"
+
+var readmeTemplate = template.Must(template.New("readme").Parse(`
+# [caddy](https://hub.docker.com/r/productionwentdown/caddy/) ![Docker Pulls](https://img.shields.io/docker/pulls/productionwentdown/caddy) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/productionwentdown/caddy/alpine?style=flat-square)
+
+A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
+
+# Shared Tags
+
+New versions are tracked within 4 hours. Currently available versions:
+{{range $entry := .Entries}}
+* {{range $index, $tag := $entry.Tags}}{{if $index}}, {{end}}` + "`{{$tag}}`" + `{{end}}
+{{end}}
+Legacy tags available that should not be used:
+
+* ` + "`2.0.0`" + `
+* ` + "`1.0.0`, `1.0.1`, `1.0.2`, `1.0.3`, `1.0.4`, `1.0.5`, `1`" + `
+* ` + "`0.10.*`, `0.11.*`" + `
+
+# Usage
+
+See the [official image](https://hub.docker.com/_/caddy) for documentation. This image behaves the same way, except that it is much slimmer.
+`))
 
 var dockerfileTemplate = template.Must(template.New("name").Parse(`FROM caddy:{{.Tag}} as build
 
@@ -58,12 +80,13 @@ CMD ["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "
 type dockerfileData struct {
 	Tag     string
 	Version string
-	Arch string
+	Arch    string
 }
 
 func main() {
 	doDockerfiles := flag.Bool("dockerfiles", false, "Update Dockerfiles")
 	doManifest := flag.Bool("manifest", false, "Update manifest")
+	doReadme := flag.Bool("readme", false, "Update README.md")
 	commit := flag.String("commit", "", "Current commit hash")
 	flag.Parse()
 
@@ -82,6 +105,12 @@ func main() {
 	}
 	if *doManifest {
 		err = updateManifest(man, *commit)
+		if err != nil {
+			panic(err)
+		}
+	}
+	if *doReadme {
+		err = updateReadme(man)
 		if err != nil {
 			panic(err)
 		}
@@ -170,4 +199,20 @@ func updateManifest(man *manifest.Manifest2822, gitCommit string) error {
 		return err
 	}
 	return ioutil.WriteFile(manifestPath, []byte(man.String()), 0644)
+}
+
+// updateReadme generates a new README.md
+func updateReadme(man *manifest.Manifest2822) error {
+	readmeFile, err := os.OpenFile("README.md", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	if err != nil {
+		return err
+	}
+	defer readmeFile.Close()
+
+	err = readmeTemplate.Execute(readmeFile, man)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
