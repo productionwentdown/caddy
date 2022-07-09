@@ -16,7 +16,7 @@ jobs:
     if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
     steps:
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Build images on Linux
       run: |

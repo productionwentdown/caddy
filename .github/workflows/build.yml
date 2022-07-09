@@ -20,12 +20,12 @@ jobs:
     if: github.repository == 'productionwentdown/caddy' && github.ref == 'refs/heads/master'
     steps:
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set Git user
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
 
     - name: Install Go 
       run: |
