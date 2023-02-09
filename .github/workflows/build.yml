@@ -24,9 +24,8 @@ jobs:
 
     - name: Set Git user
       run: |
-        ls -Ra .
-        git config user.email "action@github.com"
-        git config user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
 
     - name: Install Go 
       run: |
