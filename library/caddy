@@ -1,8 +1,8 @@
 Maintainers: Ambrose Chua <ambrose@makerforce.io> (@serverwentdown)
 
-Tags: 2.6.3-alpine, 2.6-alpine, 2-alpine, alpine
-SharedTags: 2.6.3, 2.6, 2, latest
+Tags: 2.6.4-alpine, 2.6-alpine, 2-alpine, alpine
+SharedTags: 2.6.4, 2.6, 2, latest
 Architectures: amd64, arm32v6, arm32v7, arm64v8, ppc64le, s390x
 GitRepo: https://github.com/productionwentdown/caddy.git
-GitCommit: 16082b038b8967517d456c32d44876d9999e1363
+GitCommit: 8b27a83a849f0735b01263d8d0ff9f469fbed84c
 Directory: 2.6/alpine
