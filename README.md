@@ -11,11 +11,14 @@ A tiny &lt;10MB Caddy image compressed with [UPX](https://github.com/upx/upx).
 New versions are tracked within 4 hours. Currently available versions:
 
 * `2.6.4-alpine`, `2.6-alpine`, `2-alpine`, `alpine`
+* `2.7.0-beta.1-alpine`, `2.7-alpine`
 
 ## Shared Tags
 
 * `2.6.4`, `2.6`, `2`, `latest`
   * `2.6.4-alpine`
+* `2.7.0-beta.1`, `2.7`
+  * `2.7.0-beta.1-alpine`
 
 # Usage
 
